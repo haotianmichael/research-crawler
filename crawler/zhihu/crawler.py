@@ -28,7 +28,6 @@ def askURL(url):
     try:
         response = urllib.request.urlopen(req)
         html = response.read().decode('utf-8')
-        print(html)
     except urllib.error.URLError as e:
         if hasattr(e, "code"):
             print(e.code)
@@ -57,7 +56,7 @@ def initDB(dbpath):
 def getData(baseurl):
     datalist = []
     for i in range(1, 1):
-        url =
+        url = askURL(baseurl)
         return ""
 
 
@@ -66,14 +65,12 @@ def saveToDB(datalist, dbpath):
     con = sqlite3.connect(dbpath)
     cur = con.cursor()
 
-    for data in datalist:
-        for index in range(len(data)):
-
 
 def main():
     baseurl = "https://www.zhihu.com/search?type=content&q=%E7%BC%96%E8%AF%91%E5%99%A8"
     datalist = getData(baseurl)
-    saveToDB(datalist)
+    print(datalist)
+    # saveToDB(datalist)
 
 
 if __name__ == "__main__":
